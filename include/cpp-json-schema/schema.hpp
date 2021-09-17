@@ -1,5 +1,6 @@
 #pragma once
 #include <filesystem>
+#include <ostream>
 #include <string>
 #include "array_property.hpp"
 #include "boolean_property.hpp"
@@ -19,6 +20,7 @@ class JsonSchema final : public JsonSchemaProperty
   public:
     explicit JsonSchema(const std::string &base_url, const std::string &id);
     ~JsonSchema();
+    void write(std::ostream &stream);
     void write(const std::filesystem::path &output_dir);
 
     JsonSchema &setTitle(const std::string &title);

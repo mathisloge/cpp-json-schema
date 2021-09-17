@@ -12,10 +12,15 @@ JsonSchema::JsonSchema(const std::string &base_url, const std::string &id)
 }
 JsonSchema::~JsonSchema()
 {}
+void JsonSchema::write(std::ostream &stream)
+{
+    stream << std::setw(4) << schema_ << std::endl;
+}
+
 void JsonSchema::write(const std::filesystem::path &output_dir)
 {
     std::ofstream file{output_dir / schema_id_};
-    file << std::setw(4) << schema_ << std::endl;
+    write(file);
 }
 
 JsonSchema &JsonSchema::setTitle(const std::string &title)

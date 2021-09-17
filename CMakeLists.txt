@@ -8,6 +8,8 @@ project(cpp-json-schema
 )
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
 
+option(BUILD_TESTING "build the tests" ON)
+
 find_package(nlohmann_json CONFIG REQUIRED)
 
 add_library(cpp-json-schema STATIC 
@@ -35,3 +37,9 @@ set_target_properties(cpp-json-schema PROPERTIES
     CXX_STANDARD 20 
     CXX_STANDARD_REQUIRED ON
 )
+
+
+include(CTest)
+if(BUILD_TESTING)
+    add_subdirectory(tests)
+endif()
